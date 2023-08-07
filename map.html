@@ -1,0 +1,126 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Map - Astronomy</title>
+	<embed src="To the moon.mp3" hidden="true" autostart="true" loop="true">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<div id="header">
+		<div class="wrapper clearfix">
+			<div id="logo">
+				<a href="index.html"><img src="images/logo.png" alt="LOGO"></a>
+			</div>
+			<ul id="navigation">
+				<li>
+					<a href="index.html">Home</a>
+				</li>
+				<li>
+					<a href="about.html">About</a>
+				</li>
+				<li>
+					<a href="blog.html">Blog</a>
+				</li>
+				<li>
+					<a href="gallery.html">Videos</a>
+				</li>
+				<li>
+					<a href="contact.html">Adopt a star</a>
+				</li>
+				<li  class="selected">
+					<a href="map.html">Map</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="contents">
+		<div id="adbox">
+			<div class="wrapper clearfix">
+				<p>On the map page, clicking on it will show the location of our company, and people who want to </br>go to the moon and Mars can come to our company for information.</p>
+
+				<input type='button' value="Show map centered"onclick="displayStaticMap(),'mapImg'"/>				
+				<p id='mapImg' style='width:800;height:400'></p>
+				<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&services=true"></script>
+				<!-- src="http://ditu.google.com/maps?file=api&v=2&key=ABQIAAAAmZzPqf2aW-7Si6ot-HY9-hRhm3yhlCBaxy4FA8xZJReMAoDMwhQtB3B5zaWqCOSd_tjuCOoj9SsVZw" --> 
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="body">
+			<div class="wrapper clearfix">
+				<div id="links">
+					<div>
+						<h4>Social</h4>
+						<ul>
+							<li>
+								<a href="http://www.google.cn/" target="_blank">Google +</a>
+							</li>
+							<li>
+								<a href="https://www.facebook.com/" target="_blank">Facebook</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/" target="_blank">Youtube</a>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h4>Cooperation company</h4>
+						<ul>
+							<li>
+								<a href="https://www.nasa.gov/">NASA</a>
+							</li>
+							<li>
+								<a href="http://www.cnsa.gov.cn/">CNSA</a>
+							</li>
+							<li>
+								<a href="http://www.roscosmos.ru/">RKA</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="newsletter">
+					<h4>Newsletter</h4>
+					<p>
+						Sign up for Our Newsletter
+					</p>
+					<form action="index.html" method="post">
+						<input type="text" value="">
+						<input type="submit" value="Sign Up!">
+					</form>
+				</div>
+				<p class="footnote">
+					Contact us at: <a href="mailto:sgreer@example.com/harpe">951944675@qq.com</a><br>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+<script>		
+function displayStaticMap(element_ID) {	
+let latlon = 40.9647+ "," +117.8081;
+let img_url ="http://maps.googleapis.com/maps/api/staticmap?center="+latlon;
+img_url += "&zoom=14&size=800x600&sensor=false";
+element_ID = document.getElementById("mapImg")
+element_ID.innerHTML = "<img src='"+img_url+"'>";	
+//Bind Baidu map to the element
+var map = new BMap.Map("mapImg");
+//Locate the specified longitude and latitude
+//NOTICE: PARAMETERS ORDER DIFFERENT FROM GOOGLE MAPS API
+var point = new BMap.Point(117.8081,40.9647);
+//Set zoom level and show the map
+map.centerAndZoom(point,14);
+//0-19
+//marker
+var marker = new BMap.Marker(point);
+map.addOverlay(marker);
+marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+//Enable mouse scroll
+map.enableScrollWheelZoom();
+//Enable keyboard navigation
+map.enableKeyboard();
+}
+</script>
